@@ -14,6 +14,19 @@ async def on_ready():
 async def 핑(ctx):
     await ctx.send(f'퐁! {round(client.latency * 1000)}ms') # 핑을 표시
 
+@client.command()
+async def 삭제(ctx, amount=5): # ".삭제" 까지 지움
+    await ctx.channel.purge(limit=amount)
+
+@client.command()
+async def 킥(ctx, member : discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+
+@client.command()
+async def 밴(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason=reason)  
+
+
 @client.command(aliases=['8ball', 'test'])
 async def _8ball(ctx, *, question):
     responses = ['It is certain.',
